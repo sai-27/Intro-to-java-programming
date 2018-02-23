@@ -1,0 +1,59 @@
+import java.util.*;
+
+class LabTwo{
+// To print : A B C a b c 0 1 2 $ * + /
+  public static void charToInt(){
+        System.out.printf("The character %c has the value %d\n", 'A', ( (int) 'A' ) );
+        System.out.printf("The character %c has the value %d\n", 'B', ( (int) 'B' ) );
+        System.out.printf("The character %c has the value %d\n", 'C', ( (int) 'C' ) );
+        System.out.printf("The character %c has the value %d\n", 'a', ( (int) 'a' ) );
+        System.out.printf("The character %c has the value %d\n", 'b', ( (int) 'b' ) );
+        System.out.printf("The character %c has the value %d\n", 'c', ( (int) 'c' ) );
+        System.out.printf("The character %c has the value %d\n", '0', ( (int) '0' ) );
+        System.out.printf("The character %c has the value %d\n", '1', ( (int) '1' ) );
+        System.out.printf("The character %c has the value %d\n", '2', ( (int) '2' ) );
+        System.out.printf("The character %c has the value %d\n", '$', ( (int) '$' ) );
+        System.out.printf("The character %c has the value %d\n", '*', ( (int) '*' ) );
+        System.out.printf("The character %c has the value %d\n", '+', ( (int) '+' ) );
+        System.out.printf("The character %c has the value %d\n", '/', ( (int) '/' ) );
+  }
+  public static double volumeOfSphere(double dia){
+    double r = dia/2;
+    double vol = (4/3) * Math.PI * Math.pow(r,3);
+    return vol;
+  }
+  public static surfaceAreaCylinder(double dia, double height){
+    double r = dia/2;
+    double sur = 2 * Math.PI * r * (r + height);
+    return sur;
+  }
+  public static String squareMeasure(double len){
+    double area = len * len;
+    double per = 4 * len;
+    double diag = Math.sqrt(2) * len;
+    return "Area: " + area + ", Perimeter: " + per + ", Diagonal: " + diag;
+  }
+  public static String addCommas(int num){
+    String str = String.format("%,d" , num);
+    return str;
+  }
+  public static String trigFunction(double degree){
+    double radian = Math.PI * (degree/180);
+    return "sine: " + Math.sin(radian) + " cos: " + Math.cos(radian) + " tan: " + Math.tan(radian);
+  }
+  public static void main(String[] args){
+    Scanner s = new Scanner(System.in);
+    charToInt();
+    System.out.println("Enter the value for diameter:");
+    System.out.println(volumeOfSphere(s.nextDouble()));
+    System.out.println("Enter the value for len and height of the cylinder:");
+    System.out.println(surfaceAreaCylinder(s.nextDouble(), s.nextDouble()));
+    System.out.println("Enter the length of the square:");
+    System.out.println(squareMeasure(s.nextDouble()));
+    System.out.println("Enter the number to be formatted:");
+    System.out.println(addCommas(s.nextInt()));
+    System.out.println("Enter the degree value:");
+    System.out.println(trigFunction(s.nextDouble()));
+   }
+}
+    
