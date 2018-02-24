@@ -1,0 +1,173 @@
+import java.util.HashMap;
+import java.util.*;
+
+//Roman number to integer
+class Lab4ex {
+  public String romanNum(int r){
+    HashMap<Integer, String> m = new HashMap<Integer, String>();
+    m.put(1,"I");
+    m.put(2,"II");
+    m.put(3,"III");
+    m.put(4,"IV");
+    m.put(5,"V");
+    m.put(6,"VI");
+    m.put(7,"VII");
+    m.put(8,"VIII");
+    m.put(9,"IX");
+    String rom = "";
+        
+    //https://iu.instructure.com/courses/1687145/gradebook/speed_grader?assignment_id=7761015#%7B%22student_id%22%3A%226151190%22%7D
+    while(r > 1000){
+      rom += "M";
+      r -= 1000;
+      
+    }
+    while(r>500){
+      rom += "D";
+      r -= 500;
+    }
+    while(r>100){
+      rom += "C";
+      r -= 100;
+    }
+    while(r>50){
+      rom += "L";
+      r -= 50;
+    }
+    while(r>10){
+      rom += "X";
+      r -= 10;
+    }
+    if(r>1){
+      rom += m.get(r);
+    }
+        return rom;
+  }
+  
+  
+  // checking the lock status of car door :P
+  
+  public  String slidingDoors(String input)
+	{
+		// 1 for activated
+		char dashLeft = input.charAt(0);
+		char dashRight = input.charAt(1);
+
+		//1 for locked
+		char childLock = input.charAt(2);
+
+		//1 unlocked
+		char masterUnlock = input.charAt(3);
+
+		//1 for activated
+		char insideLeft = input.charAt(4);
+		char outsideLeft = input.charAt(5);
+		char insideRight = input.charAt(6);
+		char outsideRight = input.charAt(7);
+
+		// one of {P, N, D, 1, 2, 3, R}
+		char gearShift = input.charAt(8);
+
+
+		int leftStatus = 0;
+		int rightStatus = 0;
+
+		//in park and master unlocked?
+		if((gearShift != 'P') || (masterUnlock != '1'))
+		{
+			return "Both doors stay closed";
+		}
+
+		// left door open?
+		// by non-inside
+		if(dashLeft == '1' || outsideLeft == '1')
+		{
+			leftStatus = 1;
+		}
+		//by inside
+		else if(childLock == '0' && insideLeft == '1')
+		{
+			leftStatus = 1;
+		}
+
+		//right door open?
+		//by non-inside
+		if(dashRight == '1' || outsideRight == '1')
+		{
+			rightStatus = 1;
+		}
+		// by inside
+		else if(childLock == '0' && insideRight == '1')
+		{
+			rightStatus = 1;
+		}
+
+
+		// see which doors are open
+		if(leftStatus == 1 && rightStatus == 0)
+		{
+			return "Only the left door opens";
+		}
+		if(leftStatus == 0 && rightStatus == 1)
+		{
+			return "Only the right door opens";
+		}
+		if(leftStatus == 1 && rightStatus == 1)
+		{
+			return "The left and right doors are open";
+		}
+		else
+		{
+			return "Both doors are closed";
+		}
+	}
+//Random number generator 
+	public  double Buffon()
+	{
+		double ylow;
+		double yhigh;
+		double alpha;
+		double hits = 0;
+
+		//initialize uniform random number generator
+		Random rnd = new Random();
+
+		// take draws
+		for(int i = 0; i < 10000; i++)
+		{	
+			// the set [0, 1] is homeomorphic [0, 2], and both U[0, 1] and U[0, 2] are uniform, 
+			// so multiplying every U[0, 1] draw by 2 equivalently gives the U[0, 2]
+			ylow = 2*rnd.nextDouble();
+			//The same goes for U[0, Math.PI]
+			alpha = Math.PI*rnd.nextDouble();
+			
+			// combine the two random variable draws
+			yhigh = ylow + Math.sin(alpha);
+
+			//check if draw is a hit
+			if(yhigh >=2)
+			{
+				hits++;
+			}
+		}
+
+		return 10000/hits;
+	}
+  public static void main(String[] args){
+    Lab4ex m = new Lab4ex();
+    System.out.println(m.romanNum(34));
+    System.out.println("Enter the sequence for"
+    		+ "1.Dash_left"
+    		+ "2.Dash_right"
+    		+ "3.child lock"
+    		+ "4.master lock"
+    		+ "5.inside_left"
+    		+ "6.inside_right"
+    		+ "7.outside_left"
+    		+ "8.outside_right"
+    		+ "9.Gear");
+    System.out.println(m.slidingDoors("00001011R"));
+    System.out.println(m.Buffon());
+  }
+  
+}
