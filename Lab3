@@ -1,0 +1,97 @@
+import java.util.*;
+
+public class Lab3ex {
+	private String pal;
+	public Lab3ex(String pal) {
+		// TODO Auto-generated constructor stub
+	this.pal = pal;
+	}
+  
+  //To check the string is palindrome or not 
+  
+	public boolean isPalindrome() {
+		String s1 ="";
+		String s2 = "";
+		char[] val = pal.toCharArray();//converting string to char
+		char[] temp = new char[val.length];
+		for(int i=0;i<val.length;i++) {
+			temp[i] = val[val.length-1-i];
+		}
+		for(int i=0;i<val.length;i++) {
+			
+		    s1 += val[i];//converting back to string
+		    s2 += temp[i];
+		    
+		}
+		if(s1.equals(s2))
+			return true;
+		else
+			return false;
+	}
+	
+  // Returns sum,min, max of an array
+	public String number() {
+		Scanner s = new Scanner(System.in);
+		int sum = 0;
+		int num = 0;
+		System.out.println("Enter a number between 0 and 9");
+		ArrayList<Integer> n = new ArrayList<Integer>();
+		n.add(s.nextInt());
+		try {// to avoid exceptions
+		while(s.hasNextInt()) { //checks whether the i/p is integer or not
+			//num = ;
+			if(!n.contains(s.nextInt())) { // to avoid duplicates
+				n.add(s.nextInt()); //adds element to the arraylist
+			}
+		}
+		
+		for(int i=0;i<n.size();i++)
+			sum += n.get(i); //finding sum
+		
+		int min = n.get(0);
+		int max = n.get(0);
+		for(int i = 0;i < n.size();i++)
+		{
+			if(min > n.get(i))
+				min = n.get(i); //finding min
+			if(max < n.get(i))
+				max = n.get(i);//finding max
+		}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "sum:" + sum + "max:" + n.get(n.size()-1) + "min: " + n.get(0) ;
+	}
+	
+  // Returning the grade for the given score
+	public String grade(int val) {
+		if(val > 91)
+			return "A";
+		else if(val > 81 && val<91)
+			return "B";
+		else if(val > 71 && val < 81)
+			return "C";
+		else if(val > 61 && val < 71)
+			return "D";
+		else
+			return "F";
+		
+	}
+	// converting int to binary
+	public String intToBinary(int val) {
+		
+		return Integer.toBinaryString(val);
+	}
+  
+	public static void main(String[] args) {
+		Lab3ex e = new Lab3ex("funky");
+		System.out.println(e.isPalindrome());
+		System.out.println(e.number());
+		System.out.println(e.grade(45));
+		System.out.println(e.intToBinary(45));
+		
+		
+	}
+
+}
